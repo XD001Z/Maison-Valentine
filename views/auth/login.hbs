@@ -1,0 +1,12 @@
+<form action="/auth/login" method="post">
+    <label for="email">E-mail</label>
+    <input type="email" name="email" id="email">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    {{#if errorMessage}}
+        <h5>{{errorMessage}}</h5>
+    {{/if}}
+    <button type="submit">Login</button>
+</form>
+
+<a href="/auth/signup">Create Account</a>

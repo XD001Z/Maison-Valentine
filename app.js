@@ -8,6 +8,8 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
+var membershipRouter = require('./routes/membership');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +39,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+app.use('/membership', membershipRouter);
 
 ///////////// Catch 404 and forward to handler /////////////
 app.use(function(req, res, next) {

@@ -1,0 +1,45 @@
+<form action="/auth/signup" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName" id="lastName">
+    <label for="email">E-mail</label>
+    <input type="email" name="email" id="email">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+    <label for="verify">Verify Password</label>
+    <input type="password" name="verify" id="verify">
+    {{#if errorMessage}}
+        <h5>{{errorMessage}}</h5>
+    {{/if}}
+    <button type="submit">Create Account</button>
+</form>
+
+
+
+
+
+
+
+
+{{!-- <div id="form">
+  <h2>Signup</h2>
+  <form action="/auth/signup" method="POST">
+
+    <label for="fullName">Full Name</label>
+    <input id="fullName" type="text" name="fullName" placeholder="ironhacker" />
+
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" placeholder="rockstar@ironhack.com" />
+
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="********" />
+
+    <button type="submit">Create account</button>
+
+    {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+    {{/if}}
+
+  </form>
+</div> --}}
