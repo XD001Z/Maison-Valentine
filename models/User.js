@@ -6,14 +6,8 @@ const userSchema = new Schema(
         lastName: String,
         email: String,
         password: String,
-        membership: {
-            type: Boolean,
-            default: false
-        }
-    },
-    {
-        timestamps: true
-    }
+        subscriptions: [{type: Schema.Types.ObjectId, ref: "Subscription"}]
+    }, {timestamps: true}
 );
 
 module.exports = model('User', userSchema);

@@ -27,3 +27,4 @@ package-lock.json
 .next
 .DS_Store
 yarn.lock
+*.scss
