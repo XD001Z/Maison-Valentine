@@ -17,35 +17,65 @@ router.get('/preferences', (req, res, next) => {
 
 router.post('/edit',(req, res, next) => {
     const { subType, name, lastName, address, city, state, zip, preference1, preference2, preference3 } = req.body;
-    // const { name, lastName, address, city, state, zip, subscription,
-    //      dessertStyle, dessertBeverage, seasonal } = req.body;
+    const userId = req.session.user._id;
+    const subId = req.session.user.subscription;
 
-    const userId = req.session.currentUser._id;
-    const userSubscription = req.session.currentSubscription._id
-    User.findByIdAndUpdate(userId,userSubscription, {
-        name,
-        lastName,
-        // address,
-        // city,
-        // state,
-        // zip,
-        // subscription,
-        // dessertStyle,
-        // dessertBeverage,
-        // seasonal
-    }, (error, updatedUser) => {
-        if (error) {
-            // Si hay un error, pasa el control al middleware de manejo de errores
-            next(error);
-            return;
-        }
-    
-        // Redirigir al perfil del usuario después de la actualización
-        res.redirect('/users/profile');
-    });
+    let filledFieldsUser = {};
+    let filledFieldsSubscription = {};
 
+    if (subType) filledFieldsUser.subType = subType;
+    if (subType) filledFieldsSubscription.subType = subType;
+    if (name) filledFieldsUser.name = name;
+    if (lastName) filledFieldsUser.lastName = lastName;
+    if (address) filledFieldsSubscription.address = address;
+    if (city) filledFieldsSubscription.city = city;
+    if (state) filledFieldsSubscription.state = state;
+    if (zip) filledFieldsSubscription.zip = zip;
+    if (preference1) filledFieldsSubscription.preference1 = preference1;
+    if (preference2) filledFieldsSubscription.preference2 = preference2;
+    if (preference3) filledFieldsSubscription.preference3 = preference3;
+
+    Subscription.findByIdAndUpdate(subId, filledFieldsSubscription, {new: tru})
+        .then((updatedSubscription) => {
+            filledFieldsUser.address = `${updatedSubscription.address} ${updatedSubscription.city} ${updatedSubscription.state} ${updatedSubscription.zip}`;
+            User.findByIdAndUpdate(userId, filledFieldsUser, {new: true})
+                .then((updatedUser) => {
+                    req.session.user = updatedUser;
+                    res.redirect('/users/profile');
+                })
+                .catch((err) => {
+                    next(err);
+                });
+        })
+        .catch((err) => {
+            next(err);
+        });
 });
 
-module.exports = router;
+router.post('/preferences', (req, res, next) => {
+    const { preference1, preference2, preference3 } = req.body;
+    const subId = req.session.user.subscription;
+  
+    // Verificar 
+    if (!preference1 || !preference2 || !preference3) {
+      // Redirigir 
+      return res.redirect('/preferences-form?error=Todos los campos son obligatorios');
+    }
+  
+    Subscription.findByIdAndUpdate(subId, {
+      preference1,
+      preference2,
+      preference3
+    }, (error, updatedUser) => {
+      if (error) {
+        // Si hay un error, pasa el control al middleware
+        next(error);
+        return;
+      }
+  
+      // Redirigir al perfil del usuario después de la actualización
+      res.redirect('/users/profile');
+    });
+  });
 
-//va para profile 
+module.exports = router;

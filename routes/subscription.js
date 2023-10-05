@@ -56,6 +56,7 @@ router.post('/payment', isLoggedIn, (req, res, next) => {
     }
 });
 
+//Cancel Subscription Route
 router.get('/cancel', (req ,res ,next) => {
     const id = req.session.user._id;
     const subId = req.session.user.subscription;

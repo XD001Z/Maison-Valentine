@@ -11,7 +11,11 @@
     <header>
         <div class="header-div">
             <div class="inner-div">
+                {{#if subscription}}
+                <a href="/subscription/available" class="d-none">Become a Member</a>
+                {{else}}
                 <a href="/subscription/available">Become a Member</a>
+                {{/if}}
             </div>
             <div class="inner-div">
                 <img src="https://maisonsvalentine.com/cdn/shop/files/Maison_Valentine_logo.svg?v=6932021519692499332" alt="Maison Valentine Logo">
