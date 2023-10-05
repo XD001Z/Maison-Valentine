@@ -35,7 +35,7 @@ router.post('/edit',(req, res, next) => {
     if (preference2) filledFieldsSubscription.preference2 = preference2;
     if (preference3) filledFieldsSubscription.preference3 = preference3;
 
-    Subscription.findByIdAndUpdate(subId, filledFieldsSubscription, {new: tru})
+    Subscription.findByIdAndUpdate(subId, filledFieldsSubscription, {new: true})
         .then((updatedSubscription) => {
             filledFieldsUser.address = `${updatedSubscription.address} ${updatedSubscription.city} ${updatedSubscription.state} ${updatedSubscription.zip}`;
             User.findByIdAndUpdate(userId, filledFieldsUser, {new: true})

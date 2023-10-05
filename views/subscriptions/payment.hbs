@@ -1,39 +1,48 @@
 <div class="payment">
     <form action="/subscription/payment" method="post">
-        <input type="radio" name="subType" id="subType1" value="Weekly Dessert Delights" checked>
-        <label for="subType1">Weekly Dessert Delights</label>
-        <input type="radio" name="subType" id="subType2" value="Twice a Month Dessert Delights">
-        <label for="subType2">Twice a Month Dessert Delights</label>
-        <br>
-
-        <label for="cardNum">Card Number</label>
-        <input type="text" name="cardNum" id="cardNum">
-
-        <label for="cardName">Name on Card</label>
-        <input type="text" name="cardName" id="cardName">
-
-        <label for="expDate">Exp Date</label>
-        <input type="text" name="expDate" id="expDate">
-
-        <label for="cvv">CVV</label>
-        <input type="text" name="cvv" id="cvv">
-
-        <label for="address">Address</label>
-        <input type="text" name="address" id="address">
-
-        <label for="city">City</label>
-        <input type="text" name="city" id="city">
-
-        <label for="state">State</label>
-        <input type="text" name="state" id="state">
-
-        <label for="zip">Zip Code</label>
-        <input type="text" name="zip" id="zip">
-
+        <div class="label-input-div">
+            <label for="subType">Select your dessert plan:</label>
+            <select name="subType" id="subType">
+                <option value="" disabled selected>Select Dessert</option>
+                <option value="Weekly Dessert Delight">Weekly Dessert Delights</option>
+                <option value="Twice a Month Dessert Delights">Twice a Month Dessert Delights</option>
+            </select>
+        </div>
+        <div class="label-input-div">
+            <label for="cardNum">Card Number</label>
+            <input type="text" name="cardNum" id="cardNum">
+        </div>
+        <div class="label-input-div">
+            <label for="cardName">Name on Card</label>
+            <input type="text" name="cardName" id="cardName">
+        </div>
+        <div class="label-input-div">
+            <label for="expDate">Exp Date</label>
+            <input type="text" name="expDate" id="expDate">
+        </div>
+        <div class="label-input-div">
+            <label for="cvv">CVV</label>
+            <input type="text" name="cvv" id="cvv">
+        </div>
+        <div class="label-input-div">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address">
+        </div>
+        <div class="label-input-div">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city">
+        </div>
+        <div class="label-input-div">
+            <label for="state">State</label>
+            <input type="text" name="state" id="state">
+        </div>
+        <div class="label-input-div">
+            <label for="zip">Zip Code</label>
+            <input type="text" name="zip" id="zip">
+        </div>
         {{#if errorMessage}}
             <h5>{{errorMessage}}</h5>
         {{/if}}
-
         <button type="submit">Continue</button>
     </form>
 </div>
