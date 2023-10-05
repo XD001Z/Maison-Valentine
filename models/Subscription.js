@@ -6,14 +6,14 @@ const subscriptionSchema = new Schema(
         cardName: String,
         expDate: String,
         cvv: String,
-        Address: String,
+        address: String,
         city: String,
         state: String,
         zip: String,
         subType: String,
-        preferance1: String,
-        preferance2: String,
-        preferance3: String,
+        preference1: String,
+        preference2: String,
+        preference3: String,
         nft: {type: String, default: null}
     }, {timestamps: true}
 );

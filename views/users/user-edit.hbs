@@ -1,0 +1,89 @@
+<div class="edit">
+
+    <form action="/users/edit" method="post">
+        <div class="edit-header">
+            <h1>Edit</h1>
+        </div>
+        <div class="edit-fields">
+            <div class="edit-fields-details">
+                <div class="edit-lab-inp">
+                    <label for="subType">Subscription</label>
+                    <select name="subType" id="subType">
+                        <option value="" disabled selected>Select Subscription</option>                              
+                        <option value="Dessert Duo Delight">Dessert Duo Deligh</option>
+                        <option value="Weekly Sweet Symphony">Weekly Sweet Symphony</option>
+                    </select>
+                </div>
+
+                <div class="edit-lab-inp">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="edit-lab-inp">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName">
+                </div>
+                <div class="edit-lab-inp">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address">
+                </div>
+
+                <div class="edit-fields-details-csz">
+                    <div class="city-state-zip">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city">
+                    </div>
+                    <div class="city-state-zip">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state">
+                    </div>
+                    <div class="city-state-zip">
+                        <label for="zip">Zip Code</label>
+                        <input type="text" id="zip" name="zip">
+                    </div>
+                </div>
+            </div>
+
+            <div class="edit-fields-preferences">
+                <div class="preference-choices">
+                    <div class="lab-select">
+                        <label for="preference1">Which dessert style appeals to you most?</label>
+                        <select name="preference1" id="preference1">
+                            <option value="" disabled selected>Select Answer</option>
+                            <option value="creamy">Creamy and Indulgent</option>
+                            <option value="balanced">Balanced Flavors and Textures</option>
+                            <option value="fresh">Fresh and Fruity</option>
+                        </select>
+                    </div>
+                    <div class="lab-select">
+                        <label for="preference2">What's your favorite dessert and beverage pairing?</label>
+                        <select name="preference2" id="preference2">
+                            <option value="" disabled selected>Select Answer</option>
+                            <option value="coffee">Coffee and cake</option>
+                            <option value="wine">Wine and chocolate</option>
+                            <option value="tea">Tea and pastries</option>
+                        </select>   
+                    </div>
+                    <div class="lab-select">
+                        <label for="preference3">What's your favorite seasonal dessert?</label>
+                        <select name="preference3" id="preference3">
+                            <option value="" disabled selected>Select Answer</option>
+                            <option value="fall">Pumpkin spice treats (Fall)</option>
+                            <option value="winter">Peppermint delights (Winter)</option>
+                            <option value="summer">Berry-infused desserts (Summer)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="cancel-div">
+                    <a href="/subscription/cancel">Cancel Subscription</a>
+                </div>
+            </div>
+        </div>
+        <div class="edit-buttons">
+            <a href="/users/profile">Cancel</a>
+            <a><button type="submit">Save</button></a>
+        </div>
+    </form>
+</div>
+
+

@@ -1,10 +1,10 @@
 var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
+var express = require('express');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-var session = require('express-session');
 var MongoStore = require('connect-mongo');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,7 +25,7 @@ app.use(
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       secure: process.env.NODE_ENV === 'production',
       httpOnly: true,
-      maxAge: 60000
+     // maxAge: 300000
     },
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI 

@@ -6,7 +6,13 @@ const userSchema = new Schema(
         lastName: String,
         email: String,
         password: String,
-        subscriptions: [{type: Schema.Types.ObjectId, ref: "Subscription"}]
+        address: String,
+        subType: String,
+        subscription: {
+            type: Schema.Types.ObjectId, 
+            ref: "Subscription",
+            default: null
+        }
     }, {timestamps: true}
 );
 

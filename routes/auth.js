@@ -68,7 +68,7 @@ router.post('/login', (req, res, next) => {
       .then((user) => {
         if (user && bcryptjs.compareSync(password, user.password)) {
           req.session.user = user;
-          res.redirect('/users/profile'); 
+          res.redirect('/users/profile');
         }
         else {
           res.render('auth/login', {errorMessage: "Incorrect email/password"});

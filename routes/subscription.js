@@ -5,18 +5,21 @@ const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
+//Subscription GET Route
 router.get('/available', isLoggedIn, (req, res, next) => {
     res.render('subscriptions/all-subscriptions.hbs');
 });
 
+//Payment GET Route
 router.get('/payment', isLoggedIn, (req, res, next) => {
     res.render('subscriptions/payment.hbs');
 });
 
+//Payment POST Route
 router.post('/payment', isLoggedIn, (req, res, next) => {
     const { subType, cardNum, cardName, expDate, cvv, address, city, state, zip } = req.body;
     if (!cardNum || !cardName || !expDate || !cvv || !address || !city || !state || !zip) {
-        res.render('subcription/payment', {errorMessage: "All fields are mandatory"});
+        res.render('subscriptions/payment.hbs', {errorMessage: "All fields are mandatory"});
     }
     else {
         bcryptjs
@@ -38,11 +41,14 @@ router.post('/payment', isLoggedIn, (req, res, next) => {
         })
         .then((newSubscription) => {
             return User.findByIdAndUpdate(req.session.user._id, {
-                $push: {subscriptions: newSubscription._id}
-            });
+                subscription: newSubscription._id,
+                subType,
+                address: `${address} ${city} ${state} ${zip}`
+            }, {new: true});
         })
         .then((updatedUser) => {
-            res.redirect('/subscription/preferences')
+            req.session.user = updatedUser;
+            res.redirect('/users/preferences')
         })
         .catch((err) => {
             next(err);
@@ -50,8 +56,30 @@ router.post('/payment', isLoggedIn, (req, res, next) => {
     }
 });
 
-router.get('/preferences', (req, res, next) => {
-    res.render('subscriptions/preferences.hbs');
+router.get('/cancel', (req ,res ,next) => {
+    const id = req.session.user._id;
+    const subId = req.session.user.subscription;
+
+    User.findByIdAndUpdate(id, {
+        subscription: null,
+        subType: 'N/A'
+        }, {new: true})
+        .then((updatedUser) => {
+            req.session.user = updatedUser;
+            return updatedUser;
+        })
+        .then((updatedUser) => {
+            Subscription.findByIdAndDelete(subId)
+                .then((deletedSubscription) => {
+                    res.redirect('/users/profile');
+                })
+                .catch((err) => {
+                    next(err)
+                });
+        })
+        .catch((err) => {
+            next(err);
+        });
 });
 
 module.exports = router;

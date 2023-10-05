@@ -1,12 +1,30 @@
-<form action="/auth/login" method="post">
-    <label for="email">E-mail</label>
-    <input type="email" name="email" id="email">
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    {{#if errorMessage}}
-        <h5>{{errorMessage}}</h5>
-    {{/if}}
-    <button type="submit">Login</button>
-</form>
-
-<a href="/auth/signup">Create Account</a>
+<div class="authorization">
+    <div class="login">
+        <h1>Login</h1>
+        <h5>If you have an account, please sign in</h5>
+        <form action="/auth/login" method="post">
+            <label for="email">E-mail</label>
+            <br>
+            <input type="email" name="email" id="email">
+            <br>
+            <label for="password">Password</label>
+            <br>
+            <input type="password" name="password" id="password">
+            <br>
+            {{#if errorMessage}}
+                <h5 style="color: red; font-size: 1.2em">{{errorMessage}}</h5>
+            {{/if}}
+            <div class="button-div">
+                <button type="submit">Sign In</button>
+                <a href="#">Forgot password?</a>
+            </div>
+        </form>
+    </div>
+    <div class="signup">
+        <h1>New Customer</h1>
+        <p>Register now for quick access to order status, purchase history, and exclusive benefits. We'll streamline your signup, only asking for essential details to enhance your experience, including AI generated NFTs, 10% discounts, and event access.</p>
+        <div class="button-div">
+            <a href="/auth/signup"><button>Create Account</button></a>
+        </div>
+    </div>
+</div>
