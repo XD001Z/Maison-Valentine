@@ -14,7 +14,7 @@ const subscriptionSchema = new Schema(
         preference1: String,
         preference2: String,
         preference3: String,
-        nft: {type: String, default: null}
+        aiImg: {type: String, default: null}
     }, {timestamps: true}
 );
 
