@@ -1,11 +1,11 @@
 <div class="payment">
     <form action="/subscription/payment" method="post">
+        <h1>Payment</h1>
         <div class="label-input-div">
             <label for="subType">Select your dessert plan:</label>
             <select name="subType" id="subType">
-                <option value="" disabled selected>Select Dessert</option>
-                <option value="Weekly Dessert Delight">Weekly Dessert Delights</option>
-                <option value="Twice a Month Dessert Delights">Twice a Month Dessert Delights</option>
+                <option value="Weekly Dessert Delight" selected>Weekly Dessert Delights [$150]</option>
+                <option value="Twice a Month Dessert Delights">Twice a Month Dessert Delights [$150]</option>
             </select>
         </div>
         <div class="label-input-div">
@@ -16,33 +16,37 @@
             <label for="cardName">Name on Card</label>
             <input type="text" name="cardName" id="cardName">
         </div>
-        <div class="label-input-div">
-            <label for="expDate">Exp Date</label>
-            <input type="text" name="expDate" id="expDate">
-        </div>
-        <div class="label-input-div">
-            <label for="cvv">CVV</label>
-            <input type="text" name="cvv" id="cvv">
+        <div class="date-exp-div">
+            <div class="label-input-div">
+                <label for="expDate">Exp Date</label>
+                <input type="text" name="expDate" id="expDate">
+            </div>
+            <div class="label-input-div">
+                <label for="cvv">CVV</label>
+                <input type="text" name="cvv" id="cvv">
+            </div>
         </div>
         <div class="label-input-div">
             <label for="address">Address</label>
             <input type="text" name="address" id="address">
         </div>
-        <div class="label-input-div">
-            <label for="city">City</label>
-            <input type="text" name="city" id="city">
-        </div>
-        <div class="label-input-div">
-            <label for="state">State</label>
-            <input type="text" name="state" id="state">
-        </div>
-        <div class="label-input-div">
-            <label for="zip">Zip Code</label>
-            <input type="text" name="zip" id="zip">
+        <div class="city-state-zip-div">
+            <div class="label-input-div">
+                <label for="city">City</label>
+                <input type="text" name="city" id="city">
+            </div>
+            <div class="label-input-div">
+                <label for="state">State</label>
+                <input type="text" name="state" id="state">
+            </div>
+            <div class="label-input-div">
+                <label for="zip">Zip</label>
+                <input type="text" name="zip" id="zip">
+            </div>
         </div>
         {{#if errorMessage}}
-            <h5>{{errorMessage}}</h5>
+            <h5 style="color: red; font-size: 1.2em;">{{errorMessage}}</h5>
         {{/if}}
-        <button type="submit">Continue</button>
+        <a href="#"><button type="submit">Continue</button></a>
     </form>
 </div>

@@ -6,14 +6,16 @@
         </div>
         <div class="edit-fields">
             <div class="edit-fields-details">
-                <div class="edit-lab-inp">
-                    <label for="subType">Subscription</label>
-                    <select name="subType" id="subType">
-                        <option value="" disabled selected>Select Subscription</option>                              
-                        <option value="Dessert Duo Delight">Dessert Duo Delight</option>
-                        <option value="Weekly Sweet Symphony">Weekly Sweet Symphony</option>
-                    </select>
-                </div>
+                {{#if subscription}}
+                    <div class="edit-lab-inp">
+                        <label for="subType">Subscription</label>
+                        <select name="subType" id="subType">
+                            <option value="" disabled selected>Select Subscription</option>                              
+                            <option value="Dessert Duo Delight">Dessert Duo Delight</option>
+                            <option value="Weekly Sweet Symphony">Weekly Sweet Symphony</option>
+                        </select>
+                    </div>
+                {{/if}}
 
                 <div class="edit-lab-inp">
                     <label for="name">Name</label>
@@ -43,7 +45,7 @@
                     </div>
                 </div>
             </div>
-
+            {{#if subscription}}
             <div class="edit-fields-preferences">
                 <div class="preference-choices">
                     <div class="lab-select">
@@ -78,6 +80,7 @@
                     <a href="/subscription/cancel">Cancel Subscription</a>
                 </div>
             </div>
+            {{/if}}
         </div>
         <div class="edit-buttons">
             <a href="/users/profile">Cancel</a>
@@ -86,4 +89,10 @@
     </form>
 </div>
 
-
+{{!-- <div class="cancel-div" id="popup" style="display: none;">
+    <p>Do you really want to cancel your Subscription?</p>
+    <div class="edit-buttons">
+        <button id="confirm-cancel">Yes</button>
+        <button id="deny-cancel">No</button>
+    </div>
+</div> --}}

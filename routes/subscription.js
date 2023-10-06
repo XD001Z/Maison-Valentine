@@ -7,19 +7,19 @@ const saltRounds = 10;
 
 //Subscription GET Route
 router.get('/available', isLoggedIn, (req, res, next) => {
-    res.render('subscriptions/all-subscriptions.hbs');
+    res.render('subscriptions/all-subscriptions.hbs', req.session.user);
 });
 
 //Payment GET Route
 router.get('/payment', isLoggedIn, (req, res, next) => {
-    res.render('subscriptions/payment.hbs');
+    res.render('subscriptions/payment.hbs', req.session.user);
 });
 
 //Payment POST Route
 router.post('/payment', isLoggedIn, (req, res, next) => {
     const { subType, cardNum, cardName, expDate, cvv, address, city, state, zip } = req.body;
     if (!cardNum || !cardName || !expDate || !cvv || !address || !city || !state || !zip) {
-        res.render('subscriptions/payment.hbs', {errorMessage: "All fields are mandatory"});
+        res.render('subscriptions/payment.hbs', {...req.session.user, errorMessage: "All fields are mandatory"});
     }
     else {
         bcryptjs

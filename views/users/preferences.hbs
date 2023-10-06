@@ -1,33 +1,38 @@
-<div class="background-dessert">
-<h1>Preferences</h1>
+<div class="preferences">
+    <form action="/users/preferences" method="post">
+        <div class="preferences-header">
+            <h1>Preferences</h1>
+            <h5> These questions are important for your unique Ai Generated image.</h5>
+        </div>
+        <div class="preferences-body">
+            <div class="preference-label-select">
+                <label for="preference1">Which dessert style appeals to you most?</label>
+                <select name="preference1" id="preference1">
+                    <option value="creamy" selected>Creamy and Indulgent</option>
+                    <option value="balanced">Balanced Flavors and Textures</option>
+                    <option value="fresh">Fresh and Fruity</option>
+                </select>
+            </div>
 
-<p> These questions are important for your unique Ai Generated NFT.</p>
-
-<form action="/users/preferences" method="post">
-    <label for="preference1">Which dessert style appeals to you most?</label>
-    <select name="preference1" id="preference1">
-        <option value="" disabled selected>Select Answer</option>
-        <option value="creamy">Creamy and Indulgent</option>
-        <option value="balanced">Balanced Flavors and Textures</option>
-        <option value="fresh">Fresh and Fruity</option>
-    </select>
-
-    <label for="preference2">What's your favorite dessert and beverage pairing?</label>
-    <select name="preference2" id="preference2">
-        <option value="" disabled selected>Select Answer</option>
-        <option value="coffee">Coffee and cake</option>
-        <option value="wine">Wine and chocolate</option>
-        <option value="tea">Tea and pastries</option>
-    </select>
-
-    <label for="preference3">What's your favorite seasonal dessert?</label>
-    <select name="preference3" id="preference3">
-        <option value="" disabled selected>Select Answer</option>
-        <option value="fall">Pumpkin spice treats (Fall)</option>
-        <option value="winter">Peppermint delights (Winter)</option>
-        <option value="summer">Berry-infused desserts (Summer)</option>
-    </select>
-    <br><br>
-    <input type="submit" value="Continue" class="continue-buttom">
-</form>
+            <div class="preference-label-select">
+                <label for="preference2">What's your favorite dessert and beverage pairing?</label>
+                <select name="preference2" id="preference2">
+                    <option value="coffee" selected>Coffee and cake</option>
+                    <option value="wine">Wine and chocolate</option>
+                    <option value="tea">Tea and pastries</option>
+                </select>
+            </div>
+            <div class="preference-label-select">
+                <label for="preference3">What's your favorite seasonal dessert?</label>
+                <select name="preference3" id="preference3">
+                    <option value="fall" selected>Pumpkin spice treats (Fall)</option>
+                    <option value="winter">Peppermint delights (Winter)</option>
+                    <option value="summer">Berry-infused desserts (Summer)</option>
+                </select>
+            </div>
+        </div>
+        <div class="preferences-btn">
+            <a href="#"><button type="submit">Continue</button></a>
+        </div>
+    </form>
 </div>

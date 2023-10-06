@@ -12,7 +12,7 @@ router.get('/edit', isLoggedIn, (req, res, next) => {
 });
 
 router.get('/preferences', (req, res, next) => {
-    res.render('users/preferences.hbs')
+    res.render('users/preferences.hbs', req.session.user);
 });
 
 router.post('/edit',(req, res, next) => {
@@ -37,15 +37,27 @@ router.post('/edit',(req, res, next) => {
 
     Subscription.findByIdAndUpdate(subId, filledFieldsSubscription, {new: true})
         .then((updatedSubscription) => {
-            filledFieldsUser.address = `${updatedSubscription.address} ${updatedSubscription.city} ${updatedSubscription.state} ${updatedSubscription.zip}`;
-            User.findByIdAndUpdate(userId, filledFieldsUser, {new: true})
-                .then((updatedUser) => {
-                    req.session.user = updatedUser;
-                    res.redirect('/users/profile');
-                })
-                .catch((err) => {
-                    next(err);
-                });
+            if (updatedSubscription !== null) {
+                filledFieldsUser.address = `${updatedSubscription.address} ${updatedSubscription.city} ${updatedSubscription.state} ${updatedSubscription.zip}`;
+                User.findByIdAndUpdate(userId, filledFieldsUser, {new: true})
+                    .then((updatedUser) => {
+                        req.session.user = updatedUser;
+                        res.redirect('/users/profile');
+                    })
+                    .catch((err) => {
+                        next(err);
+                    });
+            }
+            else {
+                User.findByIdAndUpdate(userId, filledFieldsUser, {new: true})
+                    .then((updatedUser) => {
+                        req.session.user = updatedUser;
+                        res.redirect('/users/profile');
+                    })
+                    .catch((err) => {
+                        next(err);
+                    });
+            }
         })
         .catch((err) => {
             next(err);
@@ -55,27 +67,18 @@ router.post('/edit',(req, res, next) => {
 router.post('/preferences', (req, res, next) => {
     const { preference1, preference2, preference3 } = req.body;
     const subId = req.session.user.subscription;
-  
-    // Verificar 
-    if (!preference1 || !preference2 || !preference3) {
-      // Redirigir 
-      return res.redirect('/preferences-form?error=Todos los campos son obligatorios');
-    }
-  
+
     Subscription.findByIdAndUpdate(subId, {
       preference1,
       preference2,
       preference3
-    }, (error, updatedUser) => {
-      if (error) {
-        // Si hay un error, pasa el control al middleware
-        next(error);
-        return;
-      }
-  
-      // Redirigir al perfil del usuario después de la actualización
-      res.redirect('/users/profile');
-    });
+    }, {new: true})
+      .then((updatedSubscription) => {
+        res.redirect('/users/profile');
+      })
+      .catch((err) => {
+        next(err)
+      });
   });
 
 module.exports = router;
